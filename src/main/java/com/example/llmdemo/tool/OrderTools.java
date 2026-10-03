@@ -74,6 +74,13 @@ public class OrderTools {
                 .orElse("没有找到订单号为 " + orderNo + " 的订单");
     }
 
+    /**
+     * 模型读到你的问题 → 自己决定调 queryOrderTotalAmount →
+     * 自己从“13800138000这个手机号一共花了多少钱”里抽出参数 phone=13800138000 →
+     * 你的 Java 方法执行 →
+     * 结果回灌 →
+     * 模型组织成人话
+     */
     @Tool(description = "根据手机号统计某个手机号的历史订单总金额")
     public String queryOrderTotalAmount(
             @ToolParam(description = "用户手机号，11 位数字") String phone) {
