@@ -7,4 +7,9 @@ spring:
       base-url: https://dashscope.aliyuncs.com/compatible-mode/v1 # 模型服务地址（你的百炼）
       chat:
         model: qwen3.7-flash # 用哪款模型
-        temperature: 0.7 # 随机性 0~1，越低越稳定
+        temperature: 0.2 # 工具调用场景用低温：参数解析要稳定，不能每次编出不同的手机号
+
+logging:
+  level:
+    org.springframework.ai.chat.client.advisor: DEBUG # 打印工具调用的中间决策过程
+    org.springframework.ai.tool: DEBUG
