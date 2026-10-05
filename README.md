@@ -2,6 +2,11 @@
 
 用 Spring AI 的 Function Calling，让大模型调用 Java 方法查订单。
 
+> **这个仓库是学习 Function Calling 用的最小 demo（内存假数据）。**
+> 最终形态已演进到真实业务项目：**若依外卖管理系统的自然语言点单 Agent**，`@Tool` 查真实 MySQL，见
+> [RuoYi-Vue3 仓库的 ruoyi-merchant 分支](https://github.com/Licories-12138/RuoYi-Vue3/tree/ruoyi-merchant)。
+> 建议两个仓库对照看：本仓库讲「机制怎么跑通」，那个分支讲「怎么接进真实项目」。
+
 ## 用了什么
 
 - JDK 21，Spring Boot 4.1.1
@@ -61,6 +66,7 @@ curl "http://localhost:8080/chat?message=帮我查13800138000的订单"
 - `temperature` 设 0.2。工具调用要参数稳定，调到 1.5 时模型会编参数。
 - Spring AI 2.x 没有 `.options` 配置层，直接写 `spring.ai.openai.chat.model` 和 `.temperature`。
 
-## 下一步
+## 演进
 
-内存假数据换成真 MySQL，加结构化输出，做自然语言点单。
+这里用内存假数据把 Function Calling 机制跑通，是学习用的。真实业务形态（`@Tool` 查 MySQL、自然语言点单）在
+[RuoYi-Vue3 仓库的 ruoyi-merchant 分支](https://github.com/Licories-12138/RuoYi-Vue3/tree/ruoyi-merchant)。
