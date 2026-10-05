@@ -65,6 +65,8 @@ curl "http://localhost:8080/chat?message=帮我查13800138000的订单"
 - 金额求和用 `BigDecimal`，不能用 `double`。
 - `temperature` 设 0.2。工具调用要参数稳定，调到 1.5 时模型会编参数。
 - Spring AI 2.x 没有 `.options` 配置层，直接写 `spring.ai.openai.chat.model` 和 `.temperature`。
+- 结构化输出用 `entity(Dto.class)` 就够，它内部会把 DTO 反射成 JSON Schema 塞进 prompt，不要额外配 `useProviderStructuredOutput()`：`qwen3.7-flash` 不在百炼严格 JSON Schema 支持名单里（只有 qwen3.7-Plus / Max、qwen3.8-Max），开了会返回 200 但抽取字段全部丢失 —— 服务端降级后格式指令既不生效也不回落到 prompt。
+- DTO 必须有 getter/setter（或 Lombok `@Data`），否则 Jackson 写不进也读不出，接口返回 `{}`。字段用包装类型（`Boolean` 而非 `boolean`），模型给 null 才知道是"用户没提"。
 
 ## 演进
 
